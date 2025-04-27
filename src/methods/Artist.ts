@@ -59,7 +59,7 @@ export class Artist {
    */
   public async getInfo(options: ArtistGetInfoOptions): Promise<ArtistResponse["getInfo"]> {
     const { artist = undefined, mbid = undefined, autocorrect = false, username = undefined, lang = "en" } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getInfo"] = await this.client.request("artist.getInfo", {
       artist,
@@ -79,7 +79,7 @@ export class Artist {
    */
   public async getSimilar(options: ArtistGetSimilarOptions): Promise<ArtistResponse["getSimilar"]> {
     const { artist = undefined, mbid = undefined, limit = undefined, autocorrect = false } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getSimilar"] = await this.client.request("artist.getSimilar", {
       artist,
@@ -97,11 +97,11 @@ export class Artist {
    */
   public async getTags(options: ArtistGetTagsOptions): Promise<ArtistResponse["getTags"]> {
     const { user, artist = undefined, mbid = undefined, autocorrect = false, lang = "en" } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getTags"] = await this.client.request("artist.getTags", {
-      artist,
       user,
+      artist,
       mbid,
       autocorrect: booleanToNumber(autocorrect),
       lang,
@@ -116,7 +116,7 @@ export class Artist {
    */
   public async getTopAlbums(options: ArtistGetTopAlbumsOptions): Promise<ArtistResponse["getTopAlbums"]> {
     const { artist = undefined, mbid = undefined, autocorrect = false, page = 1, limit = 50 } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getTopAlbums"] = await this.client.request("artist.getTopAlbums", {
       artist,
@@ -135,7 +135,7 @@ export class Artist {
    */
   public async getTopTags(options: ArtistGetTopTagsOptions): Promise<ArtistResponse["getTopTags"]> {
     const { artist = undefined, mbid = undefined, autocorrect = false } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getTopTags"] = await this.client.request("artist.getTopTags", {
       artist,
@@ -152,7 +152,7 @@ export class Artist {
    */
   public async getTopTracks(options: ArtistGetTopTracksOptions): Promise<ArtistResponse["getTopTracks"]> {
     const { artist = undefined, mbid = undefined, autocorrect = false, page = 1, limit = 50 } = options;
-    validateArtistMbid(options);
+    validateArtistMbid({ artist, mbid });
 
     const req: ArtistResponse["getTopTracks"] = await this.client.request("artist.getTopTracks", {
       artist,

@@ -90,6 +90,7 @@ export class Track {
    */
   public async getSimilar(options: TrackGetSimilarOptions): Promise<TrackResponse["getSimilar"]> {
     const { artist = undefined, track = undefined, mbid = undefined, limit = undefined, autocorrect = false } = options;
+    validateArtistTrackMbid({ artist, mbid, track });
 
     const req: TrackResponse["getSimilar"] = await this.client.request("track.getSimilar", {
       artist,
@@ -129,6 +130,7 @@ export class Track {
    */
   public async getTopTags(options: TrackGetTopTagsOptions): Promise<TrackResponse["getTopTags"]> {
     const { artist = undefined, track = undefined, mbid = undefined, autocorrect = false } = options;
+    validateArtistTrackMbid({ artist, mbid, track });
 
     const req: TrackResponse["getTopTags"] = await this.client.request("track.getTopTags", {
       artist,

@@ -1,6 +1,7 @@
 import { Client } from "../Client";
 import { booleanToNumber } from "../lib/verification";
 import {
+  TaggingType,
   UserGetFriendsOptions,
   UserGetInfoOptions,
   UserGetLovedTracksOptions,
@@ -47,7 +48,7 @@ export class User {
     const { user = undefined } = options;
 
     if (!user && !this.client.isLogged()) {
-      throw new Error("You need to be authenticate to continue. Or specify an user.");
+      throw new Error("You need to be authenticated to continue, or specify a user.");
     }
 
     const req: UserResponse["getInfo"] = await this.client.request("user.getInfo", {
@@ -82,7 +83,7 @@ export class User {
   public async getPersonalTags(options: UserGetPersonalTagsOptions): Promise<UserResponse["getPersonalTags"]> {
     const { tag, taggingType, user, limit = 50, page = 1 } = options;
 
-    if (taggingType !== "album" && taggingType !== "artist" && taggingType !== "track") {
+    if (!Object.values(TaggingType).includes(taggingType as TaggingType)) {
       throw new Error("Invalid taggingType");
     }
 

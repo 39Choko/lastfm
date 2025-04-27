@@ -40,8 +40,15 @@ export class Album {
    * @link https://www.last.fm/api/show/album.getInfo
    */
   public async getInfo(options: AlbumGetInfoOptions): Promise<AlbumResponse["getInfo"]> {
-    validateArtistAlbumMbid(options);
-    const { artist, album, mbid = undefined, autocorrect = false, username = undefined, lang = "en" } = options;
+    const {
+      artist = undefined,
+      album = undefined,
+      mbid = undefined,
+      autocorrect = false,
+      username = undefined,
+      lang = "en",
+    } = options;
+    validateArtistAlbumMbid({ album, artist, mbid });
 
     const req: AlbumResponse["getInfo"] = await this.client.request("album.getInfo", {
       artist,
@@ -61,13 +68,13 @@ export class Album {
    * @link https://www.last.fm/api/show/album.getTags
    */
   public async getTags(options: AlbumGetTagsOptions): Promise<AlbumResponse["getTags"]> {
-    validateArtistAlbumMbid(options);
-    const { artist, album, user, mbid = undefined, autocorrect = false, lang = "en" } = options;
+    const { user, artist = undefined, album = undefined, mbid = undefined, autocorrect = false, lang = "en" } = options;
+    validateArtistAlbumMbid({ album, artist, mbid });
 
     const req: AlbumResponse["getTags"] = await this.client.request("album.getTags", {
+      user,
       artist,
       album,
-      user,
       mbid,
       autocorrect: booleanToNumber(autocorrect),
       lang,
@@ -81,8 +88,8 @@ export class Album {
    * @link https://www.last.fm/api/show/album.getTopTags
    */
   public async getTopTags(options: AlbumGetTopTagsOptions): Promise<AlbumResponse["getTopTags"]> {
-    validateArtistAlbumMbid(options);
-    const { artist, album, mbid = undefined, autocorrect = false } = options;
+    const { artist = undefined, album = undefined, mbid = undefined, autocorrect = false } = options;
+    validateArtistAlbumMbid({ album, artist, mbid });
 
     const req: AlbumResponse["getTopTags"] = await this.client.request("album.getTopTags", {
       artist,
