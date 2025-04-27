@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { validateArtistAlbumMbid } from "../lib/verification";
+import { booleanToNumber, validateArtistAlbumMbid } from "../lib/verification";
 import {
   AlbumResponse,
   AlbumAddTagsOptions,
@@ -41,13 +41,13 @@ export class Album {
    */
   public async getInfo(options: AlbumGetInfoOptions): Promise<AlbumResponse["getInfo"]> {
     validateArtistAlbumMbid(options);
-    const { artist, album, mbid = undefined, autocorrect = undefined, username = undefined, lang = "en" } = options;
+    const { artist, album, mbid = undefined, autocorrect = false, username = undefined, lang = "en" } = options;
 
     const req: AlbumResponse["getInfo"] = await this.client.request("album.getInfo", {
       artist,
       album,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       username,
       lang,
     });
@@ -62,14 +62,14 @@ export class Album {
    */
   public async getTags(options: AlbumGetTagsOptions): Promise<AlbumResponse["getTags"]> {
     validateArtistAlbumMbid(options);
-    const { artist, album, user, mbid = undefined, autocorrect = undefined, lang = "en" } = options;
+    const { artist, album, user, mbid = undefined, autocorrect = false, lang = "en" } = options;
 
     const req: AlbumResponse["getTags"] = await this.client.request("album.getTags", {
       artist,
       album,
       user,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       lang,
     });
     return req;
@@ -82,13 +82,13 @@ export class Album {
    */
   public async getTopTags(options: AlbumGetTopTagsOptions): Promise<AlbumResponse["getTopTags"]> {
     validateArtistAlbumMbid(options);
-    const { artist, album, mbid = undefined, autocorrect = undefined } = options;
+    const { artist, album, mbid = undefined, autocorrect = false } = options;
 
     const req: AlbumResponse["getTopTags"] = await this.client.request("album.getTopTags", {
       artist,
       album,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
     return req;
   }

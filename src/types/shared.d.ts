@@ -104,7 +104,7 @@ export interface MbidOptions {
 }
 
 export interface AutocorrectOptions {
-  autocorrect?: 0 | 1;
+  autocorrect?: boolean;
 }
 
 export interface LimitOptions {

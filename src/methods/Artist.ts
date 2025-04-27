@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { validateArtistMbid } from "../lib/verification";
+import { booleanToNumber, validateArtistMbid } from "../lib/verification";
 import {
   ArtistResponse,
   ArtistAddTagsOptions,
@@ -58,19 +58,13 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getInfo
    */
   public async getInfo(options: ArtistGetInfoOptions): Promise<ArtistResponse["getInfo"]> {
-    const {
-      artist = undefined,
-      mbid = undefined,
-      autocorrect = undefined,
-      username = undefined,
-      lang = "en",
-    } = options;
+    const { artist = undefined, mbid = undefined, autocorrect = false, username = undefined, lang = "en" } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getInfo"] = await this.client.request("artist.getInfo", {
       artist,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       username,
       lang,
     });
@@ -84,14 +78,14 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getSimilar
    */
   public async getSimilar(options: ArtistGetSimilarOptions): Promise<ArtistResponse["getSimilar"]> {
-    const { artist = undefined, mbid = undefined, limit = undefined, autocorrect = undefined } = options;
+    const { artist = undefined, mbid = undefined, limit = undefined, autocorrect = false } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getSimilar"] = await this.client.request("artist.getSimilar", {
       artist,
       mbid,
       limit,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
     return req;
   }
@@ -102,14 +96,14 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getTags
    */
   public async getTags(options: ArtistGetTagsOptions): Promise<ArtistResponse["getTags"]> {
-    const { artist = undefined, mbid = undefined, autocorrect = undefined, user, lang = "en" } = options;
+    const { user, artist = undefined, mbid = undefined, autocorrect = false, lang = "en" } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getTags"] = await this.client.request("artist.getTags", {
       artist,
       user,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       lang,
     });
     return req;
@@ -121,13 +115,13 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getTopAlbums
    */
   public async getTopAlbums(options: ArtistGetTopAlbumsOptions): Promise<ArtistResponse["getTopAlbums"]> {
-    const { artist = undefined, mbid = undefined, autocorrect = undefined, page = 1, limit = 50 } = options;
+    const { artist = undefined, mbid = undefined, autocorrect = false, page = 1, limit = 50 } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getTopAlbums"] = await this.client.request("artist.getTopAlbums", {
       artist,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       page,
       limit,
     });
@@ -140,13 +134,13 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getTopTags
    */
   public async getTopTags(options: ArtistGetTopTagsOptions): Promise<ArtistResponse["getTopTags"]> {
-    const { artist = undefined, mbid = undefined, autocorrect = undefined } = options;
+    const { artist = undefined, mbid = undefined, autocorrect = false } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getTopTags"] = await this.client.request("artist.getTopTags", {
       artist,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
     return req;
   }
@@ -157,13 +151,13 @@ export class Artist {
    * @link https://www.last.fm/api/show/artist.getTopAlbums
    */
   public async getTopTracks(options: ArtistGetTopTracksOptions): Promise<ArtistResponse["getTopTracks"]> {
-    const { artist = undefined, mbid = undefined, autocorrect = undefined, page = 1, limit = 50 } = options;
+    const { artist = undefined, mbid = undefined, autocorrect = false, page = 1, limit = 50 } = options;
     validateArtistMbid(options);
 
     const req: ArtistResponse["getTopTracks"] = await this.client.request("artist.getTopTracks", {
       artist,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
       page,
       limit,
     });

@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { validateArtistTrackMbid } from "../lib/verification";
+import { booleanToNumber, validateArtistTrackMbid } from "../lib/verification";
 import {
   TrackAddTagsOptions,
   TrackGetCorrectionOptions,
@@ -67,7 +67,7 @@ export class Track {
       track = undefined,
       mbid = undefined,
       username = undefined,
-      autocorrect = undefined,
+      autocorrect = false,
     } = options;
 
     validateArtistTrackMbid({ artist, mbid, track });
@@ -77,7 +77,7 @@ export class Track {
       track,
       mbid,
       username,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
 
     return req;
@@ -89,20 +89,14 @@ export class Track {
    * @link https://www.last.fm/api/show/track.getSimilar
    */
   public async getSimilar(options: TrackGetSimilarOptions): Promise<TrackResponse["getSimilar"]> {
-    const {
-      artist = undefined,
-      track = undefined,
-      mbid = undefined,
-      limit = undefined,
-      autocorrect = undefined,
-    } = options;
+    const { artist = undefined, track = undefined, mbid = undefined, limit = undefined, autocorrect = false } = options;
 
     const req: TrackResponse["getSimilar"] = await this.client.request("track.getSimilar", {
       artist,
       track,
       mbid,
       limit,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
 
     return req;
@@ -114,7 +108,7 @@ export class Track {
    * @link https://www.last.fm/api/show/track.getTags
    */
   public async getTags(options: TrackGetTagsOptions): Promise<TrackResponse["getTags"]> {
-    const { user, artist = undefined, track = undefined, mbid = undefined, autocorrect = undefined } = options;
+    const { user, artist = undefined, track = undefined, mbid = undefined, autocorrect = false } = options;
     validateArtistTrackMbid({ artist, mbid, track });
 
     const req: TrackResponse["getTags"] = await this.client.request("track.getTags", {
@@ -122,7 +116,7 @@ export class Track {
       track,
       mbid,
       user,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
 
     return req;
@@ -134,13 +128,13 @@ export class Track {
    * @link https://www.last.fm/api/show/track.getTopTags
    */
   public async getTopTags(options: TrackGetTopTagsOptions): Promise<TrackResponse["getTopTags"]> {
-    const { artist = undefined, track = undefined, mbid = undefined, autocorrect = undefined } = options;
+    const { artist = undefined, track = undefined, mbid = undefined, autocorrect = false } = options;
 
     const req: TrackResponse["getTopTags"] = await this.client.request("track.getTopTags", {
       artist,
       track,
       mbid,
-      autocorrect,
+      autocorrect: booleanToNumber(autocorrect),
     });
 
     return req;
