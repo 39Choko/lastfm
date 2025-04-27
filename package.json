@@ -1,0 +1,47 @@
+{
+  "name": "@39choko/lastfm",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A simple Last.fm API client",
+  "keywords": [
+    "lastfm",
+    "last.fm",
+    "music",
+    "data",
+    "api"
+  ],
+  "homepage": "https://github.com/39Choko/lastfm",
+  "bugs": {
+    "url": "https://github.com/39Choko/lastfm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/39Choko/lastfm.git"
+  },
+  "license": "MIT",
+  "author": "39Choko",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun run build.ts",
+    "prettier": "bunx prettier --write ."
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@39choko/prettier-config": "^1.0.2",
+    "@types/bun": "latest",
+    "@types/node": "^22.15.2",
+    "@types/prompts": "^2.4.9",
+    "bun-plugin-dts": "^0.3.0",
+    "prettier": "^3.5.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
