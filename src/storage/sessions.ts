@@ -24,6 +24,9 @@ function encrypt(text: string, secret: string): string {
 
 function decrypt(data: string, secret: string): string {
   const [ivHex, encryptedHex] = data.split(":");
+
+  if (!ivHex || !encryptedHex) throw Error("Unable to decrypt the secret");
+
   const iv = Buffer.from(ivHex, "hex");
   const encryptedText = Buffer.from(encryptedHex, "hex");
   const decipher = crypto.createDecipheriv("aes-256-cbc", Buffer.from(secret), iv);
