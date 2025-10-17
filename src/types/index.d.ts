@@ -3,7 +3,7 @@ export * from "./method";
 export * from "./geo";
 
 export * from "./methods/album";
-export * from "./methods/artist.ts";
+export * from "./methods/artist";
 export * from "./methods/auth";
 export * from "./methods/chart";
 export * from "./methods/geo";
