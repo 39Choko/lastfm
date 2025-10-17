@@ -3,7 +3,6 @@ import {
   LanguageOptions,
   LimitOptions,
   MbidOptions,
-  PageOptions,
   SearchOptions,
   UsernameOptions,
 } from "../index";

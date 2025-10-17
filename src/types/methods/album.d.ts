@@ -1,4 +1,4 @@
-import { Image, Tag, OpensearchQuery, ArtistCore, Tags, RankAttrible, RankAttribute, Mbid } from "../index";
+import { Image, Tag, OpensearchQuery, ArtistCore, Tags, RankAttribute, Mbid } from "../index";
 
 interface AlbumAttribute {
   artist: string;

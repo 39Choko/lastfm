@@ -2,7 +2,6 @@ import {
   Image,
   Tag,
   ArtistCore,
-  ArtistTopAlbum,
   ArtistTopTrack,
   Wiki,
   RankAttribute,

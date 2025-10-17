@@ -93,7 +93,7 @@ interface UserGetTopAlbumsResponse {
       };
       name: string;
       playcount: string;
-      mbid: stirng | undefined;
+      mbid: string | undefined;
       url: string;
       artist: ArtistCore;
       image: Image[];
@@ -297,11 +297,10 @@ export interface UserRecentTracks {
 }
 
 export interface UserExtendedRecentTracks extends UserRecentTracks {
-  artist: {
+  artist: UserRecentTracks["artist"] & {
     url: string;
     name: string;
     image: Image[];
-    mbid: string | undefined;
   };
   loved: string;
 }

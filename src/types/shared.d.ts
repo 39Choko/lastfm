@@ -1,4 +1,3 @@
-import { extname } from "path";
 import { Languages } from "./index";
 
 export enum ImageSize {

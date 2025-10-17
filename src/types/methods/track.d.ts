@@ -1,5 +1,4 @@
-import { Mbid, TrackCore } from "../shared";
-import { Image, OpensearchQuery, Tag, ArtistCore } from "./index";
+import { Image, OpensearchQuery, Tag, TrackCore } from "../shared";
 
 export interface TrackResponse {
   getCorrection: TrackGetCorrectionResponse;
