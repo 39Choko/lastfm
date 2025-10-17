@@ -1,5 +1,5 @@
 import { loadSessionFromStorage, saveSessionToStorage } from "./storage/sessions";
-import { Methods, Session } from "./types";
+import { type Methods, type Session } from "./types";
 import crypto from "crypto";
 import prompts from "prompts";
 import { Auth } from "./methods/Auth";
@@ -15,7 +15,7 @@ import { User } from "./methods/User";
 export class Client {
   private apiRoot = "https://ws.audioscrobbler.com/2.0/";
   private apiKey: string;
-  private apiSecret?: string;
+  private apiSecret: string | undefined;
   private appName?: string;
   private headers: Record<string, string>;
   private sessionKey?: string;
@@ -99,7 +99,8 @@ export class Client {
         ...this.headers,
         ...(write && { "Content-Type": "application/x-www-form-urlencoded" }),
       },
-      body: write ? queryString : undefined,
+      
+      ...(write && { body: queryString }),
     });
 
     const data = await response.json();

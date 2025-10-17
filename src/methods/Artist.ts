@@ -1,17 +1,17 @@
 import { Client } from "../Client";
 import { booleanToNumber, validateArtistMbid } from "../lib/verification";
 import {
-  ArtistResponse,
-  ArtistAddTagsOptions,
-  ArtistGetCorrectionOptions,
-  ArtistGetInfoOptions,
-  ArtistGetSimilarOptions,
-  ArtistGetTagsOptions,
-  ArtistGetTopAlbumsOptions,
-  ArtistGetTopTagsOptions,
-  ArtistGetTopTracksOptions,
-  ArtistRemoveTagOptions,
-  ArtistSearchOptions,
+  type ArtistResponse,
+  type ArtistAddTagsOptions,
+  type ArtistGetCorrectionOptions,
+  type ArtistGetInfoOptions,
+  type ArtistGetSimilarOptions,
+  type ArtistGetTagsOptions,
+  type ArtistGetTopAlbumsOptions,
+  type ArtistGetTopTagsOptions,
+  type ArtistGetTopTracksOptions,
+  type ArtistRemoveTagOptions,
+  type ArtistSearchOptions,
 } from "../types";
 
 export class Artist {
